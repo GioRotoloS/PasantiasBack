@@ -3,6 +3,11 @@ const Tutor = require("../models/tutors");
 module.exports.getTutors = async (req,res) => {
     try {
         const tutors = await Tutor.find();
+
+        const mostratTutors = {
+            name: tutors.name,
+            correo: tutors.email
+        }
         res.json(tutors);
     } catch (error) {
         res.status(500).json({message: error.message});
@@ -31,7 +36,9 @@ module.exports.addTutor = async (req,res) => {
             email: req.body.email,
             period: req.body.period,
             day_1: req.body.day_1,
-            day_2: req.body.day_2
+            hour1: req.body.hour1,
+            day_2: req.body.day_2,
+            hour2: req.body.hour2
           });
   
           const insertedtutor = await tutor.save();
